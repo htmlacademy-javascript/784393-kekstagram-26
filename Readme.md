@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Константин Сукин](https://up.htmlacademy.ru/javascript/26/user/784393).
-* Наставник: `Павел Лукин`(https://htmlacademy.ru/profile/id1313529).
+* Наставник: [Павел Лукин](https://htmlacademy.ru/profile/id1313529).
 
 ---
 
