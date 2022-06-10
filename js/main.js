@@ -1,19 +1,22 @@
-function getRandomNumber (minNumber, maxNumber) {
-  if (minNumber < maxNumber) {
-    const RANDOM_NUMBER = minNumber + Math.random() * (maxNumber + 1 - minNumber);
-    return Math.round(RANDOM_NUMBER);
+function getRandomNumber(minNumber, maxNumber) {
+  if (typeof (minNumber && maxNumber) !== 'boolean') {
+    if (minNumber > maxNumber) {
+      throw Error ('Не верный диапозон.');
+    }else if ((minNumber >= 0) && (maxNumber >= 0)) {
+      const randomInteger = minNumber + Math.random() * (maxNumber + 1 - minNumber);
+      return Math.floor(randomInteger);
+    }
   }
-
-  return false;
+  throw Error ('Не верные аргументы.');
 }
 
-getRandomNumber(22, 56);
+getRandomNumber(11, 33);
 
-function getComment (comment, maxLenght) {
-  if(comment <= maxLenght){
+function getLenghtComment(comment, maxLenght) {
+  if (comment.lenght <= maxLenght) {
     return true;
   }
   return false;
 }
 
-getComment(22, 33);
+getLenghtComment(33, 140);
