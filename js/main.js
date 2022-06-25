@@ -87,10 +87,19 @@ const DESCRIPTION_USER = 25;
 
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
+const getIndex = () =>{
+  let sequence = 1;
+  return ()=> sequence++;
+};
+
+const getCommentId = getIndex();
+const getPictureUrl = getIndex();
+
 function createUser() {
-  return ({
-    id: '',
-    url: '',
+
+  return {
+    id: getCommentId,
+    url: getPictureUrl,
     description: getRandomArrayElement(DESCRIPTION_FOTO),
     likes: getRandomNumber(15, 200),
     comments: [
@@ -101,7 +110,9 @@ function createUser() {
         name: getRandomArrayElement(NAMES),
       }
     ],
-  });
+  };
 }
 
 const similarUsers = Array.from({length: DESCRIPTION_USER}, createUser);
+
+console.log(similarUsers);
