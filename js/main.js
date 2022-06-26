@@ -96,7 +96,7 @@ const getDescriptiontId = getIndex();
 const getPictureUrl = getIndex();
 const getCommentId = getIndex();
 
-const createComment = function (){
+const createComment = () => {
   const giveComments = {
     id: getCommentId(),
     avatar: `img/avatar-${  getRandomNumber(1, 6)  }.svg`,
@@ -106,7 +106,7 @@ const createComment = function (){
   return giveComments;
 };
 
-const createComments = function() {
+const createComments = () => {
   const randomIndex = getRandomNumber(1, 6);
   const commentList = [];
   for(let i = 0; i <= randomIndex; i++){
@@ -115,16 +115,12 @@ const createComments = function() {
   return commentList;
 };
 
-function createPhoto() {
-  return {
-    id: getDescriptiontId(),
-    url: `photos/${  getPictureUrl()  }.jpg`,
-    description: getRandomArrayElement(DESCRIPTION_FOTO),
-    likes: getRandomNumber(15, 200),
-    comments: [createComments(),]
-  };
-}
+const createPhoto = () => ({
+  id: getDescriptiontId(),
+  url: `photos/${  getPictureUrl()  }.jpg`,
+  description: getRandomArrayElement(DESCRIPTION_FOTO),
+  likes: getRandomNumber(15, 200),
+  comments: createComments(),
+});
 
-const similarUsers = Array.from({length: DESCRIPTION_USER}, createPhoto);
-
-console.log(similarUsers);
+const createPhotos = () => Array.from({length: DESCRIPTION_USER}, createPhoto);
