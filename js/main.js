@@ -1,21 +1,3 @@
-// function getRandomNumber(minNumber, maxNumber) {
-//   if (typeof (minNumber && maxNumber) !== 'boolean') {
-
-//     if (minNumber > maxNumber) {
-//       throw Error ('Не верный диапозон.');
-//     }
-
-//     if (minNumber >= 0 && maxNumber >= 0) {
-//       const randomInteger = minNumber + Math.random() * (maxNumber + 1 - minNumber);
-//     }
-
-//     return console.log(Math.floor(randomInteger));
-//   }
-
-//   throw Error ('Не верные аргументы.');
-// }
-
-
 function getRandomNumber (minNumber, maxNumber) {
   const lower = Math.ceil(Math.abs(minNumber));
   const upper = Math.floor(Math.abs(maxNumber));
@@ -24,17 +6,121 @@ function getRandomNumber (minNumber, maxNumber) {
     throw Error ('Неверный диапозон. Min должен быть меньше Max');
   }
 
-
   const randomInteger = lower + Math.random() * (upper + 1 - lower);
-  return console.log(Math.floor(randomInteger));
+  return Math.floor(randomInteger);
 }
 
+getRandomNumber(1 , 25);
 
-getRandomNumber(33, 65);
-
-
-function getLenghtComment(comment, maxLenght) {
+function validateCommentLenght(comment, maxLenght) {
   return comment.lenght <= maxLenght;
 }
 
-getLenghtComment(33, 140);
+validateCommentLenght(33, 140);
+
+const NAMES = [
+  'Александра',
+  'Вера',
+  'Вероника',
+  'Антонина',
+  'Павел',
+  'Анатолий',
+  'Виктория',
+  'Лев',
+  'Николай',
+  'Алия',
+  'Полина',
+  'Ева',
+  'Александр',
+  'Татьяна',
+  'Владимир',
+  'Николь',
+  'Артём',
+  'Алексей',
+  'Василиса',
+  'Михаил',
+  'Андрей',
+  'Никита',
+  'Мария',
+  'Максим',
+  'София',
+];
+
+const DESCRIPTION_FOTO = [
+  'Самая известная фотография прошлого',
+  'Модельный снимок',
+  'Вид изобразительного искусства',
+  'Романтическая фотография',
+  'Фото на паспорт',
+  'Нет на фотографии – нет проблемы',
+  'Композиция в фотографии',
+  'Ава без лица',
+  'Черный волк',
+  'Красивое фото леса',
+  'Самая красивая кошка',
+  'Перед нами большой экспонат',
+  'Девушка делает покупки',
+  'Красивое пожелтевшее дерево на краю обрыва',
+  'Самый лучший товар за свои деньги',
+  'Самая быстрая и дорогая машина в мире',
+  'Синее безоблочное небо',
+  'Беседка с крышей',
+  'Словарь Ожегова',
+  'Киногерой вселенной марвел Deadpool',
+  'Объявление о вакансии на работу frontend разработчика',
+  'Красивый космос, с множеством звезд',
+  'Упавшая капля в воду',
+  'Бегущий по снегу тигр',
+  'Серый кот с голубыми глазами, лежит на диване',
+];
+
+const MESSAGES = [
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
+];
+
+const DESCRIPTION_USER = 25;
+
+const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
+
+const getIndex = () =>{
+  let sequence = 1;
+  return ()=> sequence++;
+};
+
+const getDescriptiontId = getIndex();
+const getPictureUrl = getIndex();
+const getCommentId = getIndex();
+
+const createComment = () => {
+  const giveComments = {
+    id: getCommentId(),
+    avatar: `img/avatar-${  getRandomNumber(1, 6)  }.svg`,
+    message: getRandomArrayElement(MESSAGES),
+    name: getRandomArrayElement(NAMES),
+  };
+  return giveComments;
+};
+
+const createComments = () => {
+  const randomIndex = getRandomNumber(1, 6);
+  const commentList = [];
+  for(let i = 0; i <= randomIndex; i++){
+    commentList[i] = createComment();
+  }
+  return commentList;
+};
+
+const createPhoto = () => ({
+  id: getDescriptiontId(),
+  url: `photos/${  getPictureUrl()  }.jpg`,
+  description: getRandomArrayElement(DESCRIPTION_FOTO),
+  likes: getRandomNumber(15, 200),
+  comments: createComments(),
+});
+
+const createPhotos = () => Array.from({length: DESCRIPTION_USER}, createPhoto);
