@@ -10,13 +10,13 @@ function getRandomNumber (minNumber, maxNumber) {
   return Math.floor(randomInteger);
 }
 
-getRandomNumber(0 , 25);
+getRandomNumber(1 , 25);
 
-function getLenghtComment(comment, maxLenght) {
+function validateCommentLenght(comment, maxLenght) {
   return comment.lenght <= maxLenght;
 }
 
-getLenghtComment(33, 140);
+validateCommentLenght(33, 140);
 
 const NAMES = [
   'Александра',
@@ -92,27 +92,39 @@ const getIndex = () =>{
   return ()=> sequence++;
 };
 
-const getCommentId = getIndex();
+const getDescriptiontId = getIndex();
 const getPictureUrl = getIndex();
+const getCommentId = getIndex();
 
-function createUser() {
+const createComment = function (){
+  const giveComments = {
+    id: getCommentId(),
+    avatar: `img/avatar-${  getRandomNumber(1, 6)  }.svg`,
+    message: getRandomArrayElement(MESSAGES),
+    name: getRandomArrayElement(NAMES),
+  };
+  return giveComments;
+};
 
+const createComments = function() {
+  const randomIndex = getRandomNumber(1, 6);
+  const commentList = [];
+  for(let i = 0; i <= randomIndex; i++){
+    commentList[i] = createComment();
+  }
+  return commentList;
+};
+
+function createPhoto() {
   return {
-    id: getCommentId,
-    url: getPictureUrl,
+    id: getDescriptiontId(),
+    url: `photos/${  getPictureUrl()  }.jpg`,
     description: getRandomArrayElement(DESCRIPTION_FOTO),
     likes: getRandomNumber(15, 200),
-    comments: [
-      {
-        id: '',
-        avatar: 'img/avatar-{{getRandomNumber(1, 6)}}.svg',
-        message: getRandomArrayElement(MESSAGES),
-        name: getRandomArrayElement(NAMES),
-      }
-    ],
+    comments: [createComments(),]
   };
 }
 
-const similarUsers = Array.from({length: DESCRIPTION_USER}, createUser);
+const similarUsers = Array.from({length: DESCRIPTION_USER}, createPhoto);
 
 console.log(similarUsers);
