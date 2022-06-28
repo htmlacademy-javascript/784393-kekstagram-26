@@ -10,8 +10,6 @@ const getRandomNumber = (minNumber, maxNumber) => {
   return Math.floor(randomInteger);
 };
 
-getRandomNumber(1 , 25);
-
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
 const getIndex = () =>{
