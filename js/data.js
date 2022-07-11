@@ -94,6 +94,6 @@ const createPhoto = () => ({
   comments: createComments(),
 });
 
-const createPhotos = () => Array.from({length: DESCRIPTION_USER}, createPhoto);
+const createPhotos = (count) => Array.from({length: count}, createPhoto);
 
-export {createPhotos};
+export {createPhotos, createPhoto, NAMES};
