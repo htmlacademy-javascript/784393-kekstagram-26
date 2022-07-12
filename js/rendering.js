@@ -1,10 +1,5 @@
-import {createPhotos} from './data.js';
-
-
 const pictureList = document.querySelector('.pictures');
 const picture = document.querySelector('#picture').content.querySelector('.picture');
-const similarPhoto = createPhotos(25);
-
 
 const renderPhoto =(photo)=> {
   const copyPicture = picture.cloneNode(true);
@@ -25,4 +20,4 @@ const renderPhotos = (photos, element) => {
 
 };
 
-export {renderPhotos, similarPhoto, pictureList};
+export {renderPhotos, pictureList};
