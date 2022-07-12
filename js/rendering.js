@@ -13,19 +13,16 @@ const renderPhoto =(photo)=> {
   copyPicture.querySelector('.picture__comments').textContent = photo.comments.length;
   copyPicture.querySelector('.picture__img').src = photo.url;
 
-  pictureList.appendChild(copyPicture);
+  return copyPicture;
 };
 
 
 const renderPhotos = (photos, element) => {
   const pictureFragment = document.createDocumentFragment();
 
-  photos.forEach((photo) => renderPhoto(photo));
+  photos.forEach((photo) => pictureFragment.appendChild(renderPhoto(photo)));
   element.appendChild(pictureFragment);
 
 };
 
-renderPhotos(similarPhoto, pictureList);
-
-
-export {renderPhotos};
+export {renderPhotos, similarPhoto, pictureList};
