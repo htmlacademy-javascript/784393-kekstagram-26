@@ -1,3 +1,5 @@
-import { createPhotos } from './data.js';
+import {createPhotos} from './data.js';
+import {renderPhotos, pictureList} from './rendering.js';
 
-createPhotos();
+const similarPhoto = createPhotos(25);
+renderPhotos(similarPhoto, pictureList);

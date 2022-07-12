@@ -65,8 +65,6 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-const DESCRIPTION_USER = 25;
-
 const createComment = () => {
   const giveComments = {
     id: getCommentId(),
@@ -94,6 +92,6 @@ const createPhoto = () => ({
   comments: createComments(),
 });
 
-const createPhotos = () => Array.from({length: DESCRIPTION_USER}, createPhoto);
+const createPhotos = (count) => Array.from({length: count}, createPhoto);
 
 export {createPhotos};
